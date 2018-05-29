@@ -2,7 +2,6 @@ import re
 
 
 def revcomp(sq):
-
     """This function returns reverse compliment of the input sequence."""
 
     revcomp_sq = ''
@@ -128,3 +127,28 @@ class Library:
         ACHTUNG: filtering is performed inplace."""
 
         self.sequences = [x for x in self.sequences if x.length == length]
+
+    def trim_start(self, pattern):
+
+        """This function applies find_start_and_trim method of the Read class
+        to all reads of the library."""
+
+        for sq in self.sequences:
+            sq.find_start_and_trim(pattern)
+
+    def get_bc_and_trim(self, pattern, indentation, bc_length):
+
+        """This function applies find_barcode method of the Read class
+        to all reads of the library."""
+
+        for sq in self.sequences:
+            sq.find_barcode(pattern, indentation, bc_length)
+
+    def clean_library(self):
+
+        """This function deletes all the empty reads from the library."""
+
+        for i, sq in enumerate(self.sequences):
+            if len(sq) == 0:
+                self.sequences.pop(i)
+
