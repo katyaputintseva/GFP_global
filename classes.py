@@ -66,6 +66,8 @@ class Read:
             self.quality = ''
             self.nt = ''
 
+        self.length = len(self.nt)
+
     def find_barcode(self, pattern, indentation, bc_length):
 
         """This function extracts barcodes from sequences, searching for the input pattern and
@@ -87,6 +89,8 @@ class Read:
         else:
             self.quality = ''
             self.nt = ''
+
+        self.length = len(self.nt)
 
     def extract_mutations(self, true_sq):
 
@@ -149,6 +153,6 @@ class Library:
         """This function deletes all the empty reads from the library."""
 
         for i, sq in enumerate(self.sequences):
-            if len(sq) == 0:
+            if sq.length == 0:
                 self.sequences.pop(i)
 
