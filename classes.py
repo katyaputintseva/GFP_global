@@ -156,9 +156,13 @@ class Library:
 
         """This function deletes all the empty reads from the library."""
 
+        print('Before cleaning we had %d reads.' % len(self.sequences))
+
         for i, sq in enumerate(self.sequences):
             if sq.length == 0:
                 self.sequences.pop(i)
+
+        print('Now we have %d reads left.' % len(self.sequences))
 
     def extract_mutations(self, ref_seq):
 
