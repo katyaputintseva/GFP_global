@@ -20,6 +20,7 @@ class Read:
         '''Initializes a read with a nt sequence,
         a quality string, and a read name.'''
 
+        self.mutations = []
         self.nt = sq
         self.quality = quality
         self.name = name
@@ -92,7 +93,7 @@ class Read:
 
         self.length = len(self.nt)
 
-    def extract_mutations(self, true_sq):
+    def extract_mutations(self, ref_seq):
 
         """Given a non-mutated sequence, this function converts a read sequence into
         a list of mutated positions in the following format:
@@ -101,10 +102,13 @@ class Read:
         where G = original_nt, 10 = position of mutation (numberation starts from 0),
         G = new_nt"""
 
-        self.mutations = []
-        for i, nt in enumerate(true_sq):
+        for i, nt in enumerate(ref_seq):
             if nt != self.nt[i]:
                 self.mutations.append(nt + str(i) + self.nt[i])
+
+        self.n_mutations = len(self.mutations)
+        self.mutations_pos = [x[1:-1] for x in self.mutations]
+
 
 
 class Library:
@@ -156,3 +160,10 @@ class Library:
             if sq.length == 0:
                 self.sequences.pop(i)
 
+    def extract_mutations(self, ref_seq):
+
+        """This function applies extract_mutations method of the Read class
+        to all reads of the library."""
+
+        for sq in self.sequences:
+            sq.extract_mutation(ref_seq)
