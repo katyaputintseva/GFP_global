@@ -1,5 +1,6 @@
 import re
 
+
 def revcomp(sq):
 
     """This function returns reverse compliment of the input sequence."""
