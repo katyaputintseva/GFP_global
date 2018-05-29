@@ -106,7 +106,7 @@ class Read:
                 self.mutations.append(nt + str(i) + self.nt[i])
 
         self.n_mutations = len(self.mutations)
-        self.mutations_pos = [x[1:-1] for x in self.mutations]
+        self.mutations_pos = [int(x[1:-1]) for x in self.mutations]
 
 
 
