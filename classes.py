@@ -1,6 +1,8 @@
 import re
 
+
 def revcomp(sq):
+
     """This function returns reverse compliment of the input sequence."""
 
     revcomp_sq = ''
@@ -11,7 +13,15 @@ def revcomp(sq):
     return revcomp_sq
 
 
+def flatten(l):
+
+    """This function flattens a list of lists."""
+
+    return [item for sublist in l for item in sublist]
+
+
 class Read:
+
     '''This class is for reads extracted from fastq files.'''
 
     def __init__(self, sq, quality, name):
@@ -107,12 +117,12 @@ class Read:
 
         self.n_mutations = len(self.mutations)
         self.mutations_pos = [int(x[1:-1]) for x in self.mutations]
-        self.mutation_type = [x[0]+x[-1] for x in self.mutations]
+        self.mutation_type = [x[0] + x[-1] for x in self.mutations]
         self.mutations_quality = [self.quality[int(x[1:-1])] for x in self.mutations]
 
 
-
 class Library:
+
     """This class is a collection of Reads, extracted from a fastq file."""
 
     def __init__(self, file_path):
