@@ -33,7 +33,7 @@ $ samtools index m.aligned_subreads.bam
 
 ### Circular Consensus Sequences extraction
 
-This is performed using __PacBio Unanimity tool__ (https://github.com/PacificBiosciences/unanimity). The actual Readme is here https://github.com/PacificBiosciences/unanimity/blob/develop/doc/PBCCS.md. The pipeline takes time, but seems to be rather straight forward.
+This is performed using [__PacBio Unanimity tool__](https://github.com/PacificBiosciences/unanimity). The actual Readme is [here](https://github.com/PacificBiosciences/unanimity/blob/develop/doc/PBCCS.md). The pipeline takes time, but seems to be rather straight forward.
 
 The output will be in bam format. Say, <i>yourfile.ccs.bam</i>.
 
