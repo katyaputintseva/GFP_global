@@ -129,6 +129,8 @@ class Library:
                                        quality=lines[i + 3].rstrip('\n'),
                                        name=lines[i].rstrip('\n')))
 
+        print('This library size is %d consensus reads' % len(self.sequences))
+
     def filter_by_length(self, length=733):
 
         """This function filters reads by the specified length.
