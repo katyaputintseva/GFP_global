@@ -60,7 +60,7 @@ class Read:
         elif re.search(revcomp(pattern), self.nt):
             self.quality = self.quality[::-1]
             self.nt = revcomp(self.nt)
-            self.nt.slicer(pattern)
+            self.slicer(pattern)
 
         else:
             self.quality = ''
