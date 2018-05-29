@@ -166,4 +166,4 @@ class Library:
         to all reads of the library."""
 
         for sq in self.sequences:
-            sq.extract_mutation(ref_seq)
+            sq.extract_mutations(ref_seq)
