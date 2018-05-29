@@ -45,11 +45,14 @@ class Read:
 
     def find_start_and_trim(self, pattern):
 
-        '''This function searches for pattern (both forward and reverse complement)
+        """This function searches for pattern (both forward and reverse complement)
         in sq and cuts it up until this pattern. It cuts the quality sequence accordingly,
         so that only the quality scores that correspond to the obtained trimmed sequence
         are stored. It also performs reverse complement of sequences, which are not
-        oriented in the right way.'''
+        oriented in the right way.
+
+        In case start pattern was not found, both sequence and quality of the read
+        become empty strings."""
 
         if re.search(pattern, self.nt):
             self.slicer(pattern)
@@ -59,6 +62,10 @@ class Read:
             self.nt = revcomp(self.nt)
             self.nt.slicer(pattern)
 
+        else:
+            self.quality = ''
+            self.nt = ''
+
     def find_barcode(self, pattern, indentation, bc_length):
 
         """This function extracts barcodes from sequences, searching for the input pattern and
@@ -66,13 +73,20 @@ class Read:
         the corresponding quality string up untilthe start of the pattern. It also splits the
         quality str into the barcode and the target sequence parts.
 
-        The output is: bc sequence, bc quality, target sq, target sq quality."""
+        The output is: bc sequence, bc quality, target sq, target sq quality.
+
+        In case start pattern was not found, both sequence and quality of the read
+        become empty strings."""
 
         if re.search(pattern, self.nt):
             self.bc = re.search(pattern, self.nt).group()[indentation:]
             index = re.search(pattern, self.nt).start()
             self.bc_quality = self.quality[index + indentation:index + bc_length + indentation]
             self.slicer(pattern, before=False)
+
+        else:
+            self.quality = ''
+            self.nt = ''
 
     def extract_mutations(self, true_sq):
 
