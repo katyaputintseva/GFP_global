@@ -136,7 +136,11 @@ class Library:
         """This function filters reads by the specified length.
         ACHTUNG: filtering is performed inplace."""
 
+        print('Before filtering we had %d reads.' % len(self.sequences))
+
         self.sequences = [x for x in self.sequences if x.length == length]
+
+        print('Now we have %d reads left.' % len(self.sequences))
 
     def trim_start(self, pattern):
 
