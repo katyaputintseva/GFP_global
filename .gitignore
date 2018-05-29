@@ -12,3 +12,6 @@
 
 # JetBrains file
 .idea
+
+# ipynb files
+.ipynb_checkpoints
