@@ -188,3 +188,5 @@ class Library:
 
         for sq in self.sequences:
             sq.extract_mutations(ref_seq)
+
+        print('This library contains %d unique mutations' % len(set(flatten([sq.mutations for sq in self.sequences]))))
